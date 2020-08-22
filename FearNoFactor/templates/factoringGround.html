@@ -12,17 +12,17 @@
     <div class="container">
 
     <div class="row text-center">
-      <div class="col-sm-12">
-        <h1><span class="totalProblemsPassed">{{ totalProblemsPassed }}</span> exercises completed</h1>
+      <div class="col-12">
+        <h1 id="s_exercises_completed"><span class="totalProblemsPassed">{{ totalProblemsPassed }}</span> exercises completed</h1>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-sm-6 text-center">
+      <div class="col-6 text-center no_horiz_padding">
         <h1 class="m_h1 numberToFactor" onclick="manualGetProduct()"></h1>
       </div>
-      <div class="col-sm-6 text-center">
-        <div class="guessedPairs"></div>
+      <div class="col-6 text-center no_horiz_padding">
+        <div class="guessedPairs s_guessedPairs"></div>
 
       </div>
     </div>
@@ -31,7 +31,7 @@
 
     <div class="row">
 
-      <div class="col-sm-12 text-center">
+      <div class="col-12 text-center">
         <table class="table fixed_three_table">
           <tr>
             <td class="s_h1"><span class="factor1"></span></td>
@@ -40,7 +40,7 @@
           </tr>
         </table>
         <div id="left_nums">
-        <table class="table numpad">
+        <table class="table s_numpad">
           <tr>
             <td><button class="btn btn-primary numpadbutton" onclick="numPress(1, 7)">7</button></td>
             <td><button class="btn btn-primary numpadbutton" onclick="numPress(1, 8)">8</button></td>
@@ -63,7 +63,7 @@
           </table>
           </div>
         <div id="right_nums">
-        <table class="table numpad">
+        <table class="table s_numpad">
           <tr>
             <td><button class="btn btn-primary numpadbutton" onclick="numPress(2, 7)">7</button></td>
             <td><button class="btn btn-primary numpadbutton" onclick="numPress(2, 8)">8</button></td>
@@ -85,7 +85,7 @@
           </tr>
           </table>
           </div>
-        <table class="table numpad">
+        <table class="table s_numpad">
           <tr>
             <td><button id="focus-left-numpad" class="btn btn-primary numpadbutton" onclick="displayLeftNumpad()"><<</button></td>
             <td><button class="btn btn-success numpadbutton submitButton" onclick="submitButtonPress()">Submit</button></td>

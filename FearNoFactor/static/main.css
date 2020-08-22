@@ -3,6 +3,16 @@
   height: 100%;
 }
 
+.no_horiz_padding {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.s_guessedPairs {
+  height: 135px;
+  overflow-y: scroll;
+}
+
 .xl_h1 {
   font-size: 80pt;
 }
@@ -16,11 +26,19 @@
 }
 
 .s_h1 {
-  font-size: 40pt;
+  font-size: 30pt;
+}
+
+#s_exercises_completed {
+    font-size: 14pt;
 }
 
 .numpad button {
   font-size: 25pt;
+}
+
+.s_numpad button {
+  font-size: 17pt;
 }
 
 .fixed_three_table {
