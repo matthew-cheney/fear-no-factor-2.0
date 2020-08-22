@@ -30,7 +30,7 @@ from config import *
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY") or os.urandom(24)
-app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+mysqlconnector://{DB_USER}:{DB_PASSWORD}@{DB_IP}/{DB_NAME}'
+app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_IP}/{DB_NAME}'
 # app.config['TESTING'] = True
 db = SQLAlchemy(app)
 
@@ -41,7 +41,7 @@ login_manager.init_app(app)
 
 @login_manager.unauthorized_handler
 def unauthorized_callback():
-    return redirect('/login?next=' + request.path)
+    return redirect('login?next=' + request.path)
 
 # OAuth 2 client setup
 client = WebApplicationClient(GOOGLE_CLIENT_ID)
