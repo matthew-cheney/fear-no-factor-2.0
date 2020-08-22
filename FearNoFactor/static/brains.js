@@ -181,13 +181,41 @@
     allButtons = document.getElementsByClassName('submitButton')
     if (submit) {
       for (var i = 0; i < allButtons.length; i++) {
-        allButtons[i].innerHTML = "Submit"
+        allButtons[i].innerHTML = "S"
         allButtons[i].className = "btn btn-success numpadbutton submitButton"
       }
     } else {
       for (var i = 0; i < allButtons.length; i++) {
         allButtons[i].innerHTML = "Next Problem"
         allButtons[i].className = "btn btn-warning numpadbutton submitButton"
+      }
+    }
+    allButtons = document.getElementsByClassName('submitButtonS')
+    if (submit) {
+      for (var i = 0; i < allButtons.length; i++) {
+        allButtons[i].innerHTML = "="
+        allButtons[i].className = "btn btn-success numpadbutton submitButtonS"
+      }
+      otherTdS = document.getElementsByClassName('hideTdS')
+      for (var i = 0; i < otherTdS.length; i++) {
+        otherTdS[i].style.display = 'block';
+      }
+      submitTdS = document.getElementsByClassName('submitTdS')
+      for (var i = 0; i < submitTdS.length; i++) {
+        submitTdS[i].colSpan = 1;
+      }
+    } else {
+      for (var i = 0; i < allButtons.length; i++) {
+        allButtons[i].innerHTML = "Next Problem"
+        allButtons[i].className = "btn btn-warning numpadbutton submitButtonS"
+      }
+      otherTdS = document.getElementsByClassName('hideTdS')
+      for (var i = 0; i < otherTdS.length; i++) {
+        otherTdS[i].style.display = 'none';
+      }
+      submitTdS = document.getElementsByClassName('submitTdS')
+      for (var i = 0; i < submitTdS.length; i++) {
+        submitTdS[i].colSpan = 3;
       }
     }
   }

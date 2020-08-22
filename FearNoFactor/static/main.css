@@ -55,3 +55,8 @@
 html, body {
   height: 100%;
 }
+
+.factor_td {
+  border-radius: 25px;
+  box-shadow: 0 0 0 2pt #007bff;
+}
