@@ -27,7 +27,7 @@ def home():
         mode = 1
         problems_passed = current_user.hard_problems_solved
     return render_template('factoringGround.html', totalProblemsPassed=problems_passed,
-                           mode=mode, showModeToggle=True)
+                           mode=mode, showModeToggle=True, email=current_user.email)
 
 @app.route('/about')
 @login_required

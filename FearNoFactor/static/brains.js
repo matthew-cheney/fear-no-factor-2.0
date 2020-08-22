@@ -157,7 +157,8 @@
     xhr.setRequestHeader("content-type", "application/json")
     xhr.send(JSON.stringify({
         "pairs": guessedPairs,
-        "mode": mode
+        "mode": mode,
+        "email": email,
     }));
     return newNumber;
   }
@@ -341,7 +342,7 @@
   function toggleMode() {
     // console.log("in toggle mode")
     mode = Math.abs(mode - 1)
-    var url = "api/get-total-passed/" + mode
+    var url = "api/get-total-passed/" + email + "/" + mode
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
@@ -352,7 +353,7 @@
     xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
     xhr.send();
 
-    var url2 = "api/set-last-mode/" + mode
+    var url2 = "api/set-last-mode/" + email + "/" + mode
     var xhr2 = new XMLHttpRequest();
     xhr2.open("POST", url2, true);
     xhr2.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
