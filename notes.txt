@@ -1,0 +1,6 @@
+Connecting to dev database:
+  mysql -h localhost -u fnfdev -p
+  password: fnfdev
+
+or
+mysql -h 127.0.0.1 -P 3306 -u fnfdev -p fear_no_factor_dev

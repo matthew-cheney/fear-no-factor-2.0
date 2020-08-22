@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-12 text-center">
+        <h1>Instructor Dashboard</h1>
+        <h2>{{ email }}</h2>
+        <hr>
+        <hr>
+        <form method="POST" action="/api/template">
+            <h3><input name="title" type="text" placeholder="title"></h3>
+            <h3><input name="max_product" type="text" placeholder="max product"></h3>
+            <h3><input name="min_product" type="text" placeholder="min product"></h3>
+            <h3><input name="number_of_problems" type="text" placeholder="number of problems"></h3>
+            <input type="hidden" name="email" value="{{ email }}">
+            <button type="submit" id="create_template_button" class="btn btn-lg btn-primary">Submit</button>
+        </form>
+        <hr>
+        {% for template in templates %}
+        {{ template }}
+        <hr>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

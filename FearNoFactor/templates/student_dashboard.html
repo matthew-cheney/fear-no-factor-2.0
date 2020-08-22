@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-12 text-center">
+        <h1>Fear No Factor</h1>
+        <h2>{{ email }}</h2>
+        <hr>
+        <hr>
+        {% for c in challenges %}
+        {{ c.title }}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

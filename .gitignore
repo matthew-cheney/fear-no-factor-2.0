@@ -1,0 +1,9 @@
+FearNoFactor/__pycache__/__init__.cpython-37.pyc
+config.py
+credentials.txt
+*.swp
+.idea
+venv*
+*.pyc
+todo.txt
+secret_notes.txt
