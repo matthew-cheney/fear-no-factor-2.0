@@ -6,15 +6,15 @@
   function displayLeftNumpad() {
     document.getElementById('right_nums').style.display = 'none';
     document.getElementById('left_nums').style.display = 'block';
-    document.getElementById('focus-right-numpad').className = 'btn btn-warning numpadbutton';
-    document.getElementById('focus-left-numpad').className = 'btn btn-outline-warning numpadbutton';
+    document.getElementById('left-factor-entry').style.backgroundColor = ' #b3d0ff';
+    document.getElementById('right-factor-entry').style.backgroundColor = ' #fff';
   }
 
   function displayRightNumpad() {
     document.getElementById('left_nums').style.display = 'none';
     document.getElementById('right_nums').style.display = 'block';
-    document.getElementById('focus-left-numpad').className = 'btn btn-warning numpadbutton';
-    document.getElementById('focus-right-numpad').className = 'btn btn-outline-warning numpadbutton';
+    document.getElementById('right-factor-entry').style.backgroundColor = ' #b3d0ff';
+    document.getElementById('left-factor-entry').style.backgroundColor = ' #fff';
   }
 
   function numPress(numpad, number) {
