@@ -262,12 +262,12 @@
       if (guessedPairs.length > 0 && isInArray(factorPairs[i], guessedPairs)) {
         // Pair has been guessed
         // console.log("pair has been guessed")
-        outString = factorPairs[i][0] + " * " + factorPairs[i][1] + " = " + product
+        outString = factorPairs[i][0] + " * " + factorPairs[i][1]
         classes = "guessed"
       } else {
         // Pair has not been guessed
         // console.log("pair has not been guessed")
-        outString = "_ * _ = " + product
+        outString = "_ * _"
       }
 
       pairsString += "<h2 class=\""

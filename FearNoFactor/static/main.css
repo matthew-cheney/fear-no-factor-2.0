@@ -9,7 +9,7 @@
 }
 
 .s_guessedPairs {
-  height: 135px;
+  height: 20vh;
   overflow-y: scroll;
 }
 
