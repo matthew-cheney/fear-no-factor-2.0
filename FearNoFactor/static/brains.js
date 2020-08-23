@@ -106,7 +106,7 @@
     for (var i = 0; i < divs.length; i++) {
         divs[i].innerHTML = ""
     }
-    setSubmitButtons(true)
+    // setSubmitButtons(true)
   }
 
   function findFactors(product) {
@@ -181,7 +181,7 @@
     allButtons = document.getElementsByClassName('submitButton')
     if (submit) {
       for (var i = 0; i < allButtons.length; i++) {
-        allButtons[i].innerHTML = "S"
+        allButtons[i].innerHTML = "Enter"
         allButtons[i].className = "btn btn-success numpadbutton submitButton"
       }
     } else {
@@ -193,7 +193,7 @@
     allButtons = document.getElementsByClassName('submitButtonS')
     if (submit) {
       for (var i = 0; i < allButtons.length; i++) {
-        allButtons[i].innerHTML = "="
+        allButtons[i].innerHTML = "E"
         allButtons[i].className = "btn btn-success numpadbutton submitButtonS"
       }
       otherTdS = document.getElementsByClassName('hideTdS')
@@ -262,7 +262,8 @@
 
     if (guessedPairs.length == factorPairs.length) {
       // setTotalProblemsPassed(parseInt(totalProblemsPassed) + 1)
-      setSubmitButtons(false)
+      // setSubmitButtons(false)
+      nextProblem()
     }
 
   }
