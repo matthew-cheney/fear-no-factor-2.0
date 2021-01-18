@@ -178,9 +178,19 @@
     if (guessedPairs.length == factorPairs.length) {
       document.getElementById("fadedBackground").style.display = "block";
       document.getElementById("successCheck").style.display = "block";
+      var tempSrc = document.getElementById("checkImage").src;
+      document.getElementById("checkImage").src = "";
+      document.getElementById("checkImage").src = tempSrc;
     } else {
-      alert("you're missing one or more pairs!");
+      document.getElementById("fadedBackground").style.display = "block";
+      document.getElementById("tryAgain").style.display = "block";
     }
+  }
+
+  function hideFadedDivs() {
+      document.getElementById("fadedBackground").style.display = "none";
+      document.getElementById("successCheck").style.display = "none";
+      document.getElementById("tryAgain").style.display = "none";
   }
 
   function nextProblemPress() {
@@ -433,8 +443,6 @@ window.onresize = function() {
 }
 
 window.onload = function() {
-    var image = new Image();
-    image.src = "/static/checkNoLoop.gif";
     loadFirstProblem();
     windowSize();
 }
