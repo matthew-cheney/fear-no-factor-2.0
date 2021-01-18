@@ -79,10 +79,10 @@
         nums[i].innerHTML = product;
     }
     factorPairs = findFactors(product)
-    divs = document.getElementsByClassName('possiblePairs')
-    for (var i = 0; i < divs.length; i++) {
-        divs[i].innerHTML = factorPairs.length
-    }
+//    divs = document.getElementsByClassName('possiblePairs')
+//    for (var i = 0; i < divs.length; i++) {
+//        divs[i].innerHTML = factorPairs.length
+//    }
     setGuessedPairs()
   }
 
@@ -98,10 +98,10 @@
         divs[i].innerHTML = ""
     }
     // document.getElementById('grader').innerHTML = ""
-    divs = document.getElementsByClassName('possiblePairs')
-    for (var i = 0; i < divs.length; i++) {
-        divs[i].innerHTML = ""
-    }
+//    divs = document.getElementsByClassName('possiblePairs')
+//    for (var i = 0; i < divs.length; i++) {
+//        divs[i].innerHTML = ""
+//    }
     divs = document.getElementsByClassName('guessedPairs')
     for (var i = 0; i < divs.length; i++) {
         divs[i].innerHTML = ""
@@ -169,12 +169,24 @@
 
   function submitButtonPress() {
     // console.log("in submitButtonPress");
-    displayLeftNumpad()
+    displayLeftNumpad()  // for mobile view
+    submitAnswers()
+  }
+
+  function submitAllPress() {
+    displayLeftNumpad()  // for mobile view
     if (guessedPairs.length == factorPairs.length) {
-      nextProblem()
+      document.getElementById("fadedBackground").style.display = "block";
+      document.getElementById("successCheck").style.display = "block";
     } else {
-      submitAnswers()
+      alert("you're missing one or more pairs!");
     }
+  }
+
+  function nextProblemPress() {
+    nextProblem()
+    document.getElementById("fadedBackground").style.display = "none";
+    document.getElementById("successCheck").style.display = "none";
   }
 
   function setSubmitButtons(submit) {
@@ -259,13 +271,6 @@
       // Incorrect factors
       // document.getElementById('grader').innerHTML = "try again!"
     }
-
-    if (guessedPairs.length == factorPairs.length) {
-      // setTotalProblemsPassed(parseInt(totalProblemsPassed) + 1)
-      // setSubmitButtons(false)
-      nextProblem()
-    }
-
   }
 
   function setTotalProblemsPassed(newAmount) {
@@ -285,19 +290,10 @@
     // console.log("sorting guessPairs")
     guessedPairs.sort(function(a,b){return a[0] > b[0];});
     // console.log("populating list")
-    for (i = 0; i < factorPairs.length; i++) {
-      var classes = ""
+    for (i = 0; i < guessedPairs.length; i++) {
       // console.log("checking membership")
-      if (guessedPairs.length > 0 && isInArray(factorPairs[i], guessedPairs)) {
-        // Pair has been guessed
-        // console.log("pair has been guessed")
-        outString = factorPairs[i][0] + " * " + factorPairs[i][1]
-        classes = "guessed"
-      } else {
-        // Pair has not been guessed
-        // console.log("pair has not been guessed")
-        outString = "_ * _"
-      }
+      outString = guessedPairs[i][0] + " * " + guessedPairs[i][1]
+      classes = "guessed"
 
       pairsString += "<h2 class=\""
       pairsString += classes
@@ -313,10 +309,10 @@
 
   function setPairsRemaining() {
     // console.log("in setPairsRemaining")
-    divs = document.getElementsByClassName('possiblePairs')
-    for (var i = 0; i < divs.length; i++) {
-        divs[i].innerHTML = (factorPairs.length - guessedPairs.length)
-    }
+//    divs = document.getElementsByClassName('possiblePairs')
+//    for (var i = 0; i < divs.length; i++) {
+//        divs[i].innerHTML = (factorPairs.length - guessedPairs.length)
+//    }
   }
 
   function checkFactors(product, factor1, factor2) {
@@ -437,6 +433,8 @@ window.onresize = function() {
 }
 
 window.onload = function() {
+    var image = new Image();
+    image.src = "/static/checkNoLoop.gif";
     loadFirstProblem();
     windowSize();
 }

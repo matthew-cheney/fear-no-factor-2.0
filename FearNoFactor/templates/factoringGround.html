@@ -8,6 +8,15 @@
   var email = "{{ email }}"
 </script>
 <div id="both_orientations">
+  <div id="fadedBackground" style="display: none;">
+  </div>
+  <div id="successCheck" class="numpad" style="display: none;">
+    <div id="innerSuccessCheck">
+      <img id="checkImage" src="/static/darkCheckNoLoop.gif">
+      <h1>Success!</h1>
+      <h1><button class="btn btn-success" onclick="nextProblemPress()">Next Problem</button></h1>
+    </div>
+  </div>
 <div id="portrait_orientation">
     <div class="container">
 
@@ -154,9 +163,10 @@
       </div>
       <div class="col-lg-4 text-center">
 
-        <div><h2><span class="possiblePairs">1</span> factor pair(s) remaining</h2></div>
-        <hr>
+<!--        <div><h2><span class="possiblePairs">1</span> factor pair(s) remaining</h2></div>-->
+<!--        <hr>-->
         <!-- <div id="grader"></div> -->
+        <div><h1><button class="btn btn-success submit_button" onclick="submitAllPress()">Submit</button></h1></div>
         <div class="guessedPairs"></div>
       </div>
 
