@@ -35,7 +35,7 @@ def about():
     return render_template('about.html', showModeToggle=False)
 
 
-@app.route('/contact')
+@app.route('/help')
 @login_required
-def contact():
-    return render_template('contact.html', showModeToggle=False)
+def help():
+    return render_template('help.html', showModeToggle=False)

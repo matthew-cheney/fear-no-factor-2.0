@@ -107,3 +107,15 @@ html, body {
 
 #checkImage {
 }
+
+#helpPageBody {
+    max-width: 900px;
+    margin: auto;
+    text-align: justify;
+    padding-top: 20px;
+}
+
+.helpText {
+    text-indent: 40px;
+    padding-bottom: 10px;
+}
