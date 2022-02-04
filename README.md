@@ -6,6 +6,8 @@ Fear No Factor is a Flask app. It is deployed as a WSGI application.
 
 It is recommended that you use a virtual Python environment. The required dependencies are included in [requirements.txt](requirements.txt), and may be install with the command `pip install -r requirements.txt`
 
+To test that your have all the dependencies installed, run `python3 run.py`
+
 ### Setup config.py
 In the main directory (i.e. in the same folder as [initialize_database.py](initialize_database.py), create a file called `config.py`. Add the following contents, substituting in your own credentials:
 ```
