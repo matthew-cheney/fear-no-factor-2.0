@@ -3,10 +3,15 @@ from flask import render_template
 from FearNoFactor import app, login_manager, person
 
 from flask_login import login_required, current_user
+from flask import request
+from flask import redirect
+from flask import url_for
 
 
 # Flask-Login helper to retrieve a user from our db
 from FearNoFactor.db import DBProxy
+from FearNoFactor.routes.login import login
+from FearNoFactor.routes.service import setLastMode
 
 
 @login_manager.user_loader
@@ -28,6 +33,30 @@ def home():
         problems_passed = current_user.hard_problems_solved
     return render_template('factoringGround.html', totalProblemsPassed=problems_passed,
                            mode=mode, showModeToggle=True, email=current_user.email)
+
+@app.route('/basic')
+def basicMode():
+    if not current_user.is_authenticated:
+        base_url = request.base_url
+        if base_url[-1] == '/':
+            base_url = base_url[:-1]
+        # remove /basic from url
+        base_url = base_url[:-6]
+        return login(f'{base_url}/login', 'basic')
+    setLastMode(current_user.email, '0')  # 0=basic, 1=advanced. Must be string to simulate query parameter.
+    return redirect(url_for('home'))
+
+@app.route('/advanced')
+def advancedMode():
+    if not current_user.is_authenticated:
+        base_url = request.base_url
+        if base_url[-1] == '/':
+            base_url = base_url[:-1]
+        # remove /advanced from url
+        base_url = base_url[:-9]
+        return login(f'{base_url}/login', 'advanced')
+    setLastMode(current_user.email, '1')  # 0=basic, 1=advanced. Must be string to simulate query parameter.
+    return redirect(url_for('home'))
 
 @app.route('/about')
 @login_required

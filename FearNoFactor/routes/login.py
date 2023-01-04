@@ -62,25 +62,29 @@ def testing_login_redirect():
     return load_user(email)
 
 @app.route("/login")
-def login():
-    print('in login')
+def login(base_url_override=None, mode=None):
     # Find out what URL to hit for Google login
     google_provider_cfg = get_google_provider_cfg()
     authorization_endpoint = google_provider_cfg["authorization_endpoint"]
 
     # Use library to construct the request for login and provide
     # scopes that let you retrieve user's profile from Google
+    base_url = base_url_override if base_url_override else request.base_url
+    if base_url[-1] == '/':
+        base_url = base_url[:-1]
     request_uri = client.prepare_request_uri(
         authorization_endpoint,
-        redirect_uri=request.base_url + "/callback",
+        redirect_uri=base_url + "/callback",
         scope=["openid", "email", "profile"],
+        state=mode if mode else 'undetermined'
     )
     return redirect(request_uri)
 
 
 @app.route("/login/callback")
 def callback():
-    print("in callback")
+    args = request.args
+    mode = args.get('state', 'undetermined')
     # Get authorization code Google sent back to you
     code = request.args.get("code")
 
@@ -126,30 +130,30 @@ def callback():
         return "User email not available or not verified by Google.", 400
 
     # Begin user session by logging the user in
-    return load_user(users_email)
+    return load_user(users_email, mode)
 
 
 def get_google_provider_cfg():
-    print(GOOGLE_DISCOVERY_URL)
     return requests.get(GOOGLE_DISCOVERY_URL).json()
 
 
 # @login_manager.user_loader
-def load_user(email):
-    print("in load_user")
-    print(f'In load_user with {email}')
+def load_user(email, mode):
     # username = user.username
     if DBProxy.existsPerson(email):
         # User already in database
+        if mode == 'basic' or mode == 'advanced':
+            DBProxy.setMode(email, mode)
         return returninguser(email)
     # New user
-    return newuser(email)
+    return newuser(email, mode)
 
 
 @app.route('/newuser', methods=['GET', 'POST'])
-def newuser(email):
-    dummy_user = person(email=email)
+def newuser(email, mode):
     DBProxy.createPerson(person(email=email))
+    if mode == 'basic' or mode == 'advanced':
+        DBProxy.setMode(email, mode)
     return postLoadUser(email)
 
 
@@ -183,7 +187,6 @@ def postLoadUser(email):
 
 @app.route("/logout_master")
 def logout_master():
-    print("in logout()")
     logout_user()
     # encrypted_email = request.cookies.get('email', '')
     return redirect(url_for('public'))

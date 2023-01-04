@@ -403,11 +403,11 @@
     if (mode == 0) {
       // Basic mode
       modeButton.className = "btn btn-warning"
-      modeButton.innerHTML = "Basic"
+      modeButton.innerHTML = "Mode: Basic"
     } else {
       // Advanced mode
       modeButton.className = "btn btn-danger"
-      modeButton.innerHTML = "Advanced"
+      modeButton.innerHTML = "Mode: Advanced"
     }
   }
 
