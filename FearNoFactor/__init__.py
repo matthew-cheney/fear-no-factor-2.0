@@ -48,7 +48,7 @@ client = WebApplicationClient(GOOGLE_CLIENT_ID)
 
 
 EMAIL_LENGTH = 324
-PROBLEM_STRING_LENGTH = 1024
+PROBLEM_STRING_LENGTH = 1024  # should be enough to store 1-144 as csv
 TEMPLATE_TITLE_LENGTH = 324
 DIFFICULTY_NAME_LENGTH = 64
 
@@ -58,8 +58,9 @@ class person(UserMixin, db.Model):
     hard_problems_solved = db.Column(db.Integer, default=0)
     easy_problems_solved = db.Column(db.Integer, default=0)
     next_hard_problem = db.Column(db.Integer, default=random.randint(HARD_LOWER, HARD_UPPER))
-    next_easy_problem = db.Column(db.Integer, default=random.randint(BASIC_LOWER, BASIC_UPPER))
+    next_easy_problem = db.Column(db.Integer, default=14)
     difficulty_left_off_on = db.Column(db.String(DIFFICULTY_NAME_LENGTH), default="basic")
+    solved_problems = db.Column(db.String(PROBLEM_STRING_LENGTH), default="")
 
     def __init__(self, email, hard_problems_solved=0, easy_problems_solved=0):
         self.email = email

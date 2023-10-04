@@ -8,6 +8,8 @@ import json
 import random
 from flask import jsonify
 from flask import request
+
+from FearNoFactor.routes.numberGeneratorUtil import getNextEasyProblem
 from FearNoFactor.utils import getFactors
 
 @app.route('/api')
@@ -23,12 +25,14 @@ def getProblem():
     email = js.get('email')
     current_user = DBProxy.getPerson(email)
     target_num = (current_user.next_easy_problem if mode == 0 else current_user.next_hard_problem)
+    solved_problems = current_user.solved_problems
     if guessed_pairs is not None and {tuple(x) for x in guessed_pairs} == getFactors(target_num):
         if mode == 0:
-            new_number = random.randint(BASIC_LOWER, BASIC_UPPER)
+            new_number, new_solved_problems = getNextEasyProblem(target_num, solved_problems)
+            DBProxy.addNumberAndIncrSolved(current_user.email, new_solved_problems, new_number, mode)
         else:
             new_number = random.randint(HARD_LOWER, HARD_UPPER)
-        DBProxy.addNumberAndIncrSolved(current_user.email, new_number, mode)
+            DBProxy.addNumberAndIncrSolved(current_user.email, solved_problems, new_number, mode)
     else:
         new_number = target_num
     return str(new_number)
